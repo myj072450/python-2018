@@ -1,0 +1,30 @@
+문영진 <macqueenmoonsd@gmail.com>
+AttachmentsJun 16 (1 day ago)
+to me 
+import csv
+f = open('실업자수.csv')
+
+data = csv.reader(f)
+next(data)
+next(data)
+data = list(data)
+pivot = []
+
+name = input('궁금한 도시(도) 이름을 입력해주세요 : ')
+name1 = input('계 or 남자 or 여자:')
+for row in data :
+    if name in row[0] and name1 in row[1] and name1 =='계' :       
+        for i in range(2,len(row)) : 
+            pivot.append(int(row[i]))
+    elif name in row[0] and name1 in row[1] and name1 !='계':
+        for i in range(2,len(row)) : 
+            pivot.append(int(row[i]))
+            
+import matplotlib.pyplot as plt
+plt.figure(figsize = (20,10), dpi = 500) 
+plt.plot(pivot)
+plt.xlabel('년도')
+plt.ylabel('실업자 수')
+plt.title('실업자 수(단위: 1000)')
+plt.xticks(range(18),['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017'])
+plt.show()
